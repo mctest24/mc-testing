@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mailchimp — Marketing Plans & Pricing</title>
+
+<style>
+/* ── GRAPHIK from Intuit CDN ── */
+@font-face {
+  font-family: 'Graphik';
+  src: url('https://uxfabric.intuitcdn.net/fonts/graphik/1.0.0/GraphikMailchimp-Regular-Web.woff2') format('woff2');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Graphik';
+  src: url('https://uxfabric.intuitcdn.net/fonts/graphik/1.0.0/GraphikMailchimp-Medium-Web.woff2') format('woff2');
+  font-weight: 500; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Graphik';
+  src: url('https://uxfabric.intuitcdn.net/fonts/graphik/1.0.0/GraphikMailchimp-Semibold-Web.woff2') format('woff2');
+  font-weight: 600; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Graphik';
+  src: url('https://uxfabric.intuitcdn.net/fonts/graphik/1.0.0/GraphikMailchimp-Bold-Web.woff2') format('woff2');
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+/* ── MEANS display font from Intuit CDN ── */
+@font-face {
+  font-family: 'Means';
+  src: url('https://uxfabric.intuitcdn.net/fonts/means/1.0.0/Means-Regular.woff2') format('woff2');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Means';
+  src: url('https://uxfabric.intuitcdn.net/fonts/means/1.0.0/Means-Bold.woff2') format('woff2');
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+</style>
+
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── MAILCHIMP DESIGN TOKENS ── */
+:root {
+  /* Core brand */
+  --yellow:          #FFE01B;
+  --yellow-dark:     #EDD000;
+  --black:           #241C15;   /* Mailchimp warm-black, not pure #000 */
+  --white:           #FFFFFF;
+
+  /* Backgrounds */
+  --bg-page:         #FAF9F7;   /* warm off-white used across MC pages */
+  --bg-card:         #FFFFFF;
+  --bg-section-alt:  #F3F1EC;
+
+  /* Text scale */
+  --text-1:          #241C15;
+  --text-2:          #595148;
+  --text-3:          #8F8880;
+  --text-4:          #B5AFA8;
+
+  /* Borders */
+  --border:          #E0DDD8;
+  --border-strong:   #241C15;
+
+  /* Semantic */
+  --green-light:     #E6F5EE;
+  --green-text:      #0F6B3C;
+
+  /* Radius */
+  --r-sm:  6px;
+  --r-md:  10px;
+  --r-lg:  14px;
+  --r-xl:  20px;
+
+  /* Shadows — warm-tinted, subtle */
+  --shadow-card:     0 1px 3px rgba(36,28,21,.07), 0 4px 12px rgba(36,28,21,.06);
+  --shadow-raised:   0 4px 20px rgba(36,28,21,.10), 0 1px 4px rgba(36,28,21,.06);
+  --shadow-float:    0 12px 40px rgba(36,28,21,.13), 0 2px 8px rgba(36,28,21,.07);
+
+  --font:         'Graphik', -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  --font-display: 'Means', Georgia, 'Times New Roman', serif;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font);
+  background: var(--bg-page);
+  color: var(--text-1);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ═══════════════════════════════════════
+   NAV
+═══════════════════════════════════════ */
+.nav {
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  padding: 0 40px;
+  gap: 40px;
+}
+
+/* Mailchimp wordmark SVG */
+.nav-brand { display: flex; align-items: center; text-decoration: none; }
+.nav-brand svg { width: 150px; height: auto; }
+
+.nav-links {
+  display: flex; gap: 24px; list-style: none; margin-left: auto;
+}
+.nav-links a {
+  font-size: 14px; font-weight: 500; color: var(--text-2);
+  text-decoration: none; transition: color .15s;
+}
+.nav-links a:hover, .nav-links a.on { color: var(--text-1); }
+.nav-actions { display: flex; align-items: center; gap: 10px; }
+
+.btn { font-family: var(--font); cursor: pointer; transition: all .15s; border: none; display: inline-flex; align-items: center; justify-content: center; font-weight: 600; text-decoration: none; }
+.btn-sm { font-size: 14px; padding: 9px 18px; border-radius: var(--r-md); }
+.btn-md { font-size: 15px; padding: 12px 24px; border-radius: var(--r-md); }
+.btn-lg { font-size: 16px; padding: 14px 32px; border-radius: var(--r-md); }
+
+.btn-ghost { background: transparent; color: var(--text-1); box-shadow: inset 0 0 0 1.5px var(--border); }
+.btn-ghost:hover { box-shadow: inset 0 0 0 1.5px var(--text-1); }
+.btn-dark { background: var(--black); color: var(--white); }
+.btn-dark:hover { background: #3a2e24; }
+.btn-yellow { background: var(--yellow); color: var(--black); }
+.btn-yellow:hover { background: var(--yellow-dark); }
+.btn-outline-dark { background: transparent; color: var(--black); box-shadow: inset 0 0 0 2px var(--black); }
+.btn-outline-dark:hover { background: var(--black); color: var(--white); }
+
+/* ═══════════════════════════════════════
+   HERO
+═══════════════════════════════════════ */
+.hero {
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  padding: 80px 40px 72px;
+  text-align: center;
+}
+.hero-eyebrow {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-bottom: 20px;
+}
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(40px, 5.5vw, 64px);
+  font-weight: 700;
+  color: var(--text-1);
+  line-height: 1.1;
+  letter-spacing: -0.5px;
+  max-width: 700px;
+  margin: 0 auto 18px;
+  animation: up .5s ease both;
+}
+.hero p {
+  font-size: 17px;
+  color: var(--text-2);
+  line-height: 1.65;
+  max-width: 500px;
+  margin: 0 auto;
+  animation: up .5s .07s ease both;
+}
+
+/* ═══════════════════════════════════════
+   CONTROLS BAR  (billing toggle + dropdown)
+═══════════════════════════════════════ */
+.controls-bar {
+  background: var(--bg-section-alt);
+  border-bottom: 1px solid var(--border);
+  padding: 20px 40px;
+}
+.controls-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+/* Billing toggle */
+.toggle-wrap { display: flex; flex-direction: column; gap: 6px; }
+.toggle-label { font-size: 11px; font-weight: 600; letter-spacing: .8px; text-transform: uppercase; color: var(--text-3); }
+.toggle-pill {
+  display: inline-flex;
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: 100px;
+  padding: 3px;
+}
+.toggle-pill button {
+  font-family: var(--font);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-3);
+  background: transparent;
+  border: none;
+  border-radius: 100px;
+  padding: 7px 18px;
+  cursor: pointer;
+  transition: all .2s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.toggle-pill button.active {
+  background: var(--black);
+  color: var(--white);
+}
+.save-badge {
+  background: var(--green-light);
+  color: var(--green-text);
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 100px;
+  letter-spacing: .2px;
+}
+.toggle-pill button.active .save-badge {
+  background: rgba(255,224,27,.25);
+  color: var(--yellow);
+}
+.annual-savings-note {
+  font-size: 11px;
+  color: var(--green-text);
+  font-weight: 600;
+  opacity: 0;
+  transition: opacity .2s;
+  height: 16px;
+}
+.annual-savings-note.visible { opacity: 1; }
+
+/* Contact dropdown */
+.dropdown-wrap { display: flex; flex-direction: column; gap: 6px; }
+.dropdown-label { font-size: 11px; font-weight: 600; letter-spacing: .8px; text-transform: uppercase; color: var(--text-3); }
+.select-shell {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+.select-shell select {
+  font-family: var(--font);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-1);
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: var(--r-md);
+  padding: 10px 44px 10px 16px;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  outline: none;
+  min-width: 220px;
+  transition: border-color .15s, box-shadow .15s;
+}
+.select-shell select:hover { border-color: var(--text-1); }
+.select-shell select:focus { border-color: var(--text-1); box-shadow: 0 0 0 3px rgba(36,28,21,.1); }
+.select-arrow {
+  position: absolute;
+  right: 14px;
+  pointer-events: none;
+  color: var(--text-3);
+}
+
+/* Pricing note */
+.pricing-note {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--text-3);
+  margin-left: auto;
+  max-width: 280px;
+  line-height: 1.45;
+}
+@media (max-width: 700px) { .pricing-note { display: none; } }
+
+/* ═══════════════════════════════════════
+   PRICING GRID
+═══════════════════════════════════════ */
+.pricing-section {
+  padding: 48px 40px 80px;
+  background: var(--bg-page);
+}
+.pricing-grid {
+  max-width: 1120px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+
+/* ── PLAN CARD ── */
+.plan-card {
+  background: var(--bg-card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  transition: box-shadow .2s, transform .2s;
+  box-shadow: var(--shadow-card);
+}
+.plan-card:hover {
+  box-shadow: var(--shadow-raised);
+  transform: translateY(-2px);
+}
+.plan-card.featured {
+  border-color: var(--black);
+  border-width: 2px;
+  box-shadow: var(--shadow-raised);
+  position: relative;
+}
+.plan-card.featured:hover {
+  box-shadow: var(--shadow-float);
+  transform: translateY(-4px);
+}
+
+.card-badge-wrap {
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--black);
+  display: none;
+}
+.plan-card.featured .card-badge-wrap { display: flex; }
+.card-badge {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--yellow);
+}
+
+.card-body { padding: 28px 24px 24px; }
+.card-spacer { padding-top: 32px; } /* compensates for missing badge on non-featured */
+
+.plan-name {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .6px;
+  color: var(--text-1);
+  margin-bottom: 4px;
+}
+.plan-tagline {
+  font-size: 12px;
+  color: var(--text-3);
+  line-height: 1.45;
+  min-height: 36px;
+}
+
+/* Price display */
+.price-block { margin: 22px 0 6px; }
+.price-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  line-height: 1;
+}
+.price-currency {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-2);
+  padding-bottom: 5px;
+}
+.price-amount {
+  font-family: var(--font-display);
+  font-size: 44px;
+  font-weight: 700;
+  color: var(--text-1);
+  letter-spacing: -1.5px;
+  transition: opacity .15s;
+}
+.price-period {
+  font-size: 13px;
+  color: var(--text-3);
+  padding-bottom: 6px;
+  font-weight: 400;
+}
+.price-sub {
+  font-size: 11.5px;
+  color: var(--text-3);
+  margin-top: 4px;
+  min-height: 16px;
+  line-height: 1.4;
+}
+.price-sub strong { color: var(--text-2); font-weight: 600; }
+.price-sub.unavail { color: #c0392b; font-style: italic; }
+
+/* CTA area */
+.card-cta-area {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+}
+.card-cta {
+  display: block;
+  width: 100%;
+  padding: 13px;
+  border-radius: var(--r-md);
+  font-family: var(--font);
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all .15s;
+  border: none;
+  margin-bottom: 8px;
+}
+.cta-yellow  { background: var(--yellow); color: var(--black); }
+.cta-yellow:hover  { background: var(--yellow-dark); }
+.cta-dark    { background: var(--black); color: var(--white); }
+.cta-dark:hover    { background: #3a2e24; }
+.cta-outline { background: transparent; color: var(--text-1); box-shadow: inset 0 0 0 1.5px var(--border); }
+.cta-outline:hover { box-shadow: inset 0 0 0 1.5px var(--text-1); }
+
+.cta-note {
+  font-size: 11px;
+  color: var(--text-4);
+  text-align: center;
+  line-height: 1.5;
+}
+
+/* Feature list */
+.features-section { margin-top: 24px; }
+.features-header {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: .8px;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-bottom: 14px;
+}
+.feat-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.feat-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  font-size: 13px;
+  color: var(--text-2);
+  line-height: 1.4;
+}
+.feat-list li.em { color: var(--text-1); font-weight: 500; }
+
+/* check icons */
+.ci {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0;
+}
+.ci-neutral { background: #EDEAE5; }
+.ci-black   { background: var(--black); }
+.ci-yellow  { background: var(--yellow); }
+.ci svg { width: 10px; height: 10px; }
+
+/* ═══════════════════════════════════════
+   PLAN GUIDE STRIP
+═══════════════════════════════════════ */
+.guide-strip {
+  background: var(--white);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 56px 40px;
+}
+.guide-inner { max-width: 1120px; margin: 0 auto; }
+.guide-header { margin-bottom: 36px; }
+.guide-header h2 {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--text-1);
+  margin-bottom: 8px;
+}
+.guide-header p { font-size: 15px; color: var(--text-2); }
+.guide-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.guide-card {
+  border: 1.5px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 20px;
+  transition: border-color .15s;
+  cursor: default;
+}
+.guide-card:hover { border-color: var(--text-1); }
+.guide-card.hl { border-color: var(--black); }
+.guide-plan-name {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-bottom: 8px;
+}
+.guide-card.hl .guide-plan-name { color: var(--text-1); }
+.guide-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-1);
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+.guide-desc { font-size: 12px; color: var(--text-2); line-height: 1.55; }
+
+/* ═══════════════════════════════════════
+   TRUST ROW
+═══════════════════════════════════════ */
+.trust-row {
+  background: var(--bg-section-alt);
+  border-top: 1px solid var(--border);
+  padding: 56px 40px;
+}
+.trust-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+.trust-item {
+  border-left: 2px solid var(--border);
+  padding-left: 24px;
+}
+.trust-num {
+  font-family: var(--font-display);
+  font-size: 40px;
+  font-weight: 700;
+  color: var(--text-1);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.trust-label { font-size: 13px; color: var(--text-2); line-height: 1.5; }
+
+/* ═══════════════════════════════════════
+   FAQ
+═══════════════════════════════════════ */
+.faq {
+  background: var(--white);
+  border-top: 1px solid var(--border);
+  padding: 72px 40px;
+}
+.faq-inner { max-width: 760px; margin: 0 auto; }
+.faq-inner h2 {
+  font-family: var(--font-display);
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--text-1);
+  margin-bottom: 48px;
+}
+.faq-item {
+  border-top: 1px solid var(--border);
+  padding: 22px 0;
+}
+.faq-item:last-child { border-bottom: 1px solid var(--border); }
+.faq-q {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  cursor: pointer;
+}
+.faq-q-text { font-size: 15px; font-weight: 600; color: var(--text-1); line-height: 1.4; }
+.faq-btn {
+  flex-shrink: 0;
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  border: 1.5px solid var(--border);
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all .2s;
+  font-size: 18px;
+  line-height: 1;
+  color: var(--text-3);
+}
+.faq-item.open .faq-btn {
+  background: var(--black); border-color: var(--black);
+  color: var(--white); transform: rotate(45deg);
+}
+.faq-a {
+  font-size: 14px; color: var(--text-2); line-height: 1.7;
+  max-height: 0; overflow: hidden;
+  transition: max-height .3s ease, margin-top .2s;
+}
+.faq-item.open .faq-a { max-height: 300px; margin-top: 14px; }
+
+/* ═══════════════════════════════════════
+   FOOTER CTA
+═══════════════════════════════════════ */
+.footer-cta {
+  background: var(--black);
+  padding: 80px 40px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.footer-cta::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 700px; height: 700px;
+  background: radial-gradient(circle, rgba(255,224,27,.07) 0%, transparent 60%);
+  pointer-events: none;
+}
+.footer-cta h2 {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 12px;
+  line-height: 1.15;
+  letter-spacing: -.3px;
+}
+.footer-cta p { font-size: 16px; color: var(--text-3); margin-bottom: 36px; }
+.footer-btns { display: flex; gap: 12px; justify-content: center; }
+
+/* ═══════════════════════════════════════
+   ANIMATIONS
+═══════════════════════════════════════ */
+@keyframes up {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: .5; }
+}
+.price-updating { animation: blink .25s ease; }
+
+/* ═══════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════ */
+@media (max-width: 1000px) {
+  .pricing-grid, .guide-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 700px) {
+  .pricing-grid, .guide-grid, .trust-inner { grid-template-columns: 1fr; }
+  .nav { padding: 0 20px; gap: 12px; }
+  .nav-links { display: none; }
+  .hero, .pricing-section, .faq, .footer-cta { padding-left: 20px; padding-right: 20px; }
+  .controls-bar { padding: 16px 20px; }
+  .controls-inner { flex-direction: column; align-items: flex-start; }
+  .footer-btns { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav class="nav">
+  <a class="nav-brand" href="#">
+    <!-- Mailchimp wordmark SVG (official proportions) -->
+    <svg viewBox="0 0 200 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Mailchimp">
+      <!-- Freddie head -->
+      <ellipse cx="22" cy="26" rx="13" ry="14.5" fill="#241C15"/>
+      <ellipse cx="22" cy="25.5" rx="11.5" ry="13" fill="#C8A07E"/>
+      <!-- eyes -->
+      <ellipse cx="18.5" cy="22" rx="2.5" ry="2.5" fill="#241C15"/>
+      <ellipse cx="25.5" cy="22" rx="2.5" ry="2.5" fill="#241C15"/>
+      <circle cx="19.2" cy="21.3" r=".9" fill="#fff"/>
+      <circle cx="26.2" cy="21.3" r=".9" fill="#fff"/>
+      <!-- smile -->
+      <path d="M18 27.5 Q22 30.5 26 27.5" stroke="#241C15" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+      <!-- cheeks -->
+      <ellipse cx="16" cy="27" rx="2" ry="1.2" fill="#E8967A" opacity=".7"/>
+      <ellipse cx="28" cy="27" rx="2" ry="1.2" fill="#E8967A" opacity=".7"/>
+      <!-- hat -->
+      <path d="M11 17.5 C11 11 33 11 33 17.5" stroke="#241C15" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      <rect x="10" y="16" width="24" height="3" rx="1.5" fill="#241C15"/>
+      <!-- ears -->
+      <ellipse cx="9.5" cy="26" rx="3" ry="2" fill="#C8A07E"/>
+      <ellipse cx="34.5" cy="26" rx="3" ry="2" fill="#C8A07E"/>
+      <!-- Wordmark text -->
+      <text x="46" y="31" font-family="'Graphik', -apple-system, 'Helvetica Neue', Arial, sans-serif" font-weight="700" font-size="22" fill="#241C15" letter-spacing="-0.3">Mailchimp</text>
+    </svg>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="#">Platform</a></li>
+    <li><a href="#">Solutions</a></li>
+    <li><a href="#" class="on">Pricing</a></li>
+    <li><a href="#">Resources</a></li>
+  </ul>
+
+  <div class="nav-actions">
+    <button class="btn btn-sm btn-ghost">Log in</button>
+    <button class="btn btn-sm btn-yellow">Sign up free</button>
+  </div>
+</nav>
+
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <p class="hero-eyebrow">Plans &amp; Pricing</p>
+  <h1>Simple pricing,<br>built to grow with you.</h1>
+  <p>Start free. Upgrade as your audience grows. Your price is always based on your contact count — no surprises.</p>
+</section>
+
+
+<!-- ═══ CONTROLS BAR ═══ -->
+<div class="controls-bar">
+  <div class="controls-inner">
+
+    <!-- Billing toggle -->
+    <div class="toggle-wrap">
+      <span class="toggle-label">Billing period</span>
+      <div class="toggle-pill">
+        <button id="btn-mo" class="active" onclick="setBilling('monthly')">Monthly</button>
+        <button id="btn-yr" onclick="setBilling('annual')">
+          Annual <span class="save-badge" id="save-chip">Save 15%</span>
+        </button>
+      </div>
+      <div class="annual-savings-note" id="annual-note"></div>
+    </div>
+
+    <!-- Contact count dropdown -->
+    <div class="dropdown-wrap">
+      <span class="dropdown-label">Number of contacts</span>
+      <div class="select-shell">
+        <select id="contact-select" onchange="updatePricing(this.value)">
+          <option value="0">Up to 500 contacts</option>
+          <option value="1">Up to 1,500 contacts</option>
+          <option value="2">Up to 2,500 contacts</option>
+          <option value="3">Up to 5,000 contacts</option>
+          <option value="4">Up to 10,000 contacts</option>
+          <option value="5">Up to 15,000 contacts</option>
+          <option value="6">Up to 20,000 contacts</option>
+          <option value="7">Up to 25,000 contacts</option>
+          <option value="8">Up to 50,000 contacts</option>
+          <option value="9">Up to 100,000 contacts</option>
+          <option value="10">200,000+ contacts</option>
+        </select>
+        <span class="select-arrow">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+      </div>
+    </div>
+
+    <!-- Pricing context note -->
+    <div class="pricing-note">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="flex-shrink:0;margin-top:1px">
+        <circle cx="7" cy="7" r="6.5" stroke="#B5AFA8"/>
+        <path d="M7 6.5V9.5M7 5H7.01" stroke="#B5AFA8" stroke-width="1.3" stroke-linecap="round"/>
+      </svg>
+      <span>Price is set by your highest contact count during the billing period. No surprise mid-cycle charges.</span>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ═══ PRICING GRID ═══ -->
+<section class="pricing-section">
+  <div class="pricing-grid">
+
+    <!-- FREE -->
+    <div class="plan-card">
+      <div class="card-body card-spacer">
+        <p class="plan-name">Free</p>
+        <p class="plan-tagline">For new senders building an audience from scratch.</p>
+        <div class="price-block">
+          <div class="price-row">
+            <span class="price-amount">$0</span>
+            <span class="price-period">/mo</span>
+          </div>
+          <p class="price-sub">Up to <strong>500 contacts</strong>, always free</p>
+        </div>
+        <div class="card-cta-area">
+          <a class="card-cta cta-outline" href="#">Sign up free</a>
+          <p class="cta-note">No credit card required</p>
+        </div>
+        <div class="features-section">
+          <p class="features-header">What's included</p>
+          <ul class="feat-list">
+            <li>
+              <span class="ci ci-neutral"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5 3.5-4" stroke="#595148" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span>
+              1,000 email sends/month
+            </li>
+            <li>
+              <span class="ci ci-neutral"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5 3.5-4" stroke="#595148" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span>
+              Pre-built email templates
+            </li>
+            <li>
+              <span class="ci ci-neutral"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5 3.5-4" stroke="#595148" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span>
+              Landing pages &amp; signup forms
+            </li>
+            <li>
+              <span class="ci ci-neutral"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5 3.5-4" stroke="#595148" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span>
+              Basic reporting &amp; analytics
+            </li>
+            <li>
+              <span class="ci ci-neutral"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5 3.5-4" stroke="#595148" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span>
+              1 audience · 1 seat
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- ESSENTIALS -->
+    <div class="plan-card">
+      <div class="card-body card-spacer">
+        <p class="plan-name">Essentials</p>
+        <p class="plan-tagline">For small businesses ready to look professional and grow.</p>
+        <div class="price-block">
+          <div class="price-row">
+            <span class="price-currency">$</span>
+            <span class="price-amount" id="ess-amt">13</span>
+            <span class="price-period">/mo</span>
+          </div>
+          <p class="price-sub" id="ess-sub">Up to <strong>500 contacts</strong></p>
+        </div>
+        <div class="card-cta-area">
+          <a class="card-cta cta-dark" href="#">Start free trial</a>
+          <p class="cta-note">Free for 1 month · No credit card needed</p>
+        </div>
+        <div class="features-section">
+          <p class="features-header">Everything in Free, plus</p>
+          <ul class="feat-list">
+            <li class="em">
+              <span class="ci ci-black"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5 3.5-4" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span>
+              Remove Mailchimp branding
+            </li>
+            <li class="em">
+              <span class="ci ci-black"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5 3.5-4" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span>
+              10× monthly email sends
+            </li>
+            <li>
+              <span class="ci ci-black"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5 3.5-4" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span>
+              A/B testing
+            </li>
+            <li>
+              <span class="ci ci-black"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5 3.5-4" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span>
+              Custom branding &amp; domain
+            </li>
+            <li>
+              <span class="ci ci-black"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5 3.5-4" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span>
+              3 audiences · 3 seats
+            </li>
+            <li>
+              <span class="ci ci-black"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5 3.5-4" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span>
+              Email &amp; chat support
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- STANDARD — FEATURED -->
+    <div class="plan-card featured">
+      <div class="card-badge-wrap">
+        <span class="card-badge">Most popular</span>
+      </div>
+      <div class="card-body">
+        <p class="plan-name">Standard</p>
+        <p class="plan-tagline">For growing teams who want automation that drives revenue.</p>
+        <div class="price-block">
+          <div class="price-row">
+            <span class="price-currency">$</span>
+            <span class="price-amount" id="std-amt">20</span>
+            <span class="price-period">/mo</span>
+          </div>
+          <p class="price-sub" id="std-sub">Up to <strong>500 contacts</strong></p>
+        </div>
+        <div class="card-cta-area">
+          <a class="card-cta cta-yellow" href="#">Start free trial</a>
+          <p class="cta-note">Free for 1 month · No credit card needed</p>
+        </div>
+        <div class="features-section">
+          <p class="features-header">Everything in Essentials, plus</p>
+          <ul class="feat-list">
+            <!-- CR2: advanced seg, multivariate, comparative reporting moved to Standard -->
+            <li class="em">
+              <span class="ci ci-yellow"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5 3.5-4" stroke="#241C15" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span>
+              Advanced segmentation
+            </li>
+            <li class="em">
+              <span class="ci ci-yellow"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5 3.5-4" stroke="#241C15" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span>
+              Multivariate testing
+            </li>
+            <li class="em">
+              <span class="ci ci-yellow"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5 3.5-4" stroke="#241C15" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span>
+              Comparative reporting
+            </li>
+            <li>
+              <span class="ci ci-yellow"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5 3.5-4" stroke="#241C15" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span>
+              Send time optimization
+            </li>
+            <li>
+              <span class="ci ci-yellow"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5 3.5-4" stroke="#241C15" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span>
+              AI-powered content tools
+            </li>
+            <li>
+              <span class="ci ci-yellow"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5 3.5-4" stroke="#241C15" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span>
+              5 audiences · Unlimited seats
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- PREMIUM -->
+    <div class="plan-card">
+      <div class="card-body card-spacer">
+        <p class="plan-name">Premium</p>
+        <p class="plan-tagline">For high-volume senders who need dedicated support at scale.</p>
+        <div class="price-block">
+          <div class="price-row">
+            <span class="price-currency">$</span>
+            <span class="price-amount" id="pre-amt">350</span>
+            <span class="price-period">/mo</span>
+          </div>
+          <p class="price-sub" id="pre-sub">Starting at <strong>200K+ contacts</strong></p>
+        </div>
+        <div class="card-cta-area">
+          <a class="card-cta cta-dark" href="#" id="pre-cta">Buy now</a>
+          <p class="cta-note" id="pre-note">No free trial · Direct purchase</p>
+        </div>
+        <div class="features-section">
+          <!--
+            VOC research (200K+ prospects):
+            Barriers = scale confidence, deliverability proof, integration trust, org readiness.
+            No "enterprise deliverability" bullet (unverified).
+            No dedicated IP (paid add-on, not an inclusion).
+          -->
+          <p class="features-header">Everything in Standard, plus</p>
+          <ul class="feat-list">
+            <li class="em">
+              <span class="ci ci-black"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5 3.5-4" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span>
+              Dedicated onboarding manager
+            </li>
+            <li class="em">
+              <span class="ci ci-black"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5 3.5-4" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span>
+              Verified sending domain &amp; reputation monitoring
+            </li>
+            <li>
+              <span class="ci ci-black"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5 3.5-4" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span>
+              Phone support, 24/7
+            </li>
+            <li>
+              <span class="ci ci-black"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5 3.5-4" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span>
+              Unlimited audiences &amp; seats
+            </li>
+            <li>
+              <span class="ci ci-black"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5 3.5-4" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span>
+              SSO &amp; custom templates
+            </li>
+            <li>
+              <span class="ci ci-black"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5 3.5-4" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span>
+              300+ native integrations
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /pricing-grid -->
+</section>
+
+
+<!-- ═══ PLAN GUIDE ═══ -->
+<section class="guide-strip">
+  <div class="guide-inner">
+    <div class="guide-header">
+      <h2>Not sure which plan fits?</h2>
+      <p>Use the guide below to find the right starting point. You can always change plans later.</p>
+    </div>
+    <div class="guide-grid">
+      <div class="guide-card">
+        <div class="guide-plan-name">Free</div>
+        <div class="guide-title">You're just getting started</div>
+        <div class="guide-desc">Building your first list, exploring email marketing, sending occasional campaigns. Under 500 contacts.</div>
+      </div>
+      <div class="guide-card">
+        <div class="guide-plan-name">Essentials</div>
+        <div class="guide-title">You want to look polished</div>
+        <div class="guide-desc">Sending regular campaigns, removing Mailchimp's logo, and needing more sends and A/B testing.</div>
+      </div>
+      <div class="guide-card hl">
+        <div class="guide-plan-name">Standard ★</div>
+        <div class="guide-title">You want marketing that works harder</div>
+        <div class="guide-desc">Ready for advanced segmentation, multivariate testing, and automation to turn sends into measurable revenue.</div>
+      </div>
+      <div class="guide-card">
+        <div class="guide-plan-name">Premium</div>
+        <div class="guide-title">You're managing at scale</div>
+        <div class="guide-desc">200K+ contacts, needing a dedicated account manager, verified sending infrastructure, and enterprise-level support.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ TRUST ROW ═══ -->
+<section class="trust-row">
+  <div class="trust-inner">
+    <div class="trust-item">
+      <div class="trust-num">11M+</div>
+      <div class="trust-label">Businesses use Mailchimp across 175+ countries</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-num">99%</div>
+      <div class="trust-label">Average deliverability rate across all paid plans</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-num">300+</div>
+      <div class="trust-label">Native integrations — Shopify, Stripe, Salesforce and more</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ FAQ ═══ -->
+<section class="faq">
+  <div class="faq-inner">
+    <h2>Common questions</h2>
+
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q">
+        <span class="faq-q-text">What counts as a "contact" and how does billing work?</span>
+        <button class="faq-btn">+</button>
+      </div>
+      <div class="faq-a">Your contact count includes all subscribed and unsubscribed contacts stored in your audience. Unsubscribed contacts still count toward your total. Your plan price is set by your highest contact count during the billing period — there are no surprise mid-cycle charges, and you'll only move to a higher tier if your count stays above it.</div>
+    </div>
+
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q">
+        <span class="faq-q-text">Does Premium come with a free trial?</span>
+        <button class="faq-btn">+</button>
+      </div>
+      <div class="faq-a">No — Essentials and Standard include a free 1-month trial with no credit card required. Premium is a direct purchase with no trial period. If you're evaluating Premium, we recommend talking to our sales team first — they can walk you through the platform for your specific send volume and use case.</div>
+    </div>
+
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q">
+        <span class="faq-q-text">Can I switch plans at any time?</span>
+        <button class="faq-btn">+</button>
+      </div>
+      <div class="faq-a">Yes. Upgrades take effect immediately and you'll get instant access to new features. Downgrades take effect at the end of your current billing cycle so you never lose access mid-period. You can manage your plan anytime from your account settings.</div>
+    </div>
+
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q">
+        <span class="faq-q-text">How much do I actually save going annual?</span>
+        <button class="faq-btn">+</button>
+      </div>
+      <div class="faq-a">Annual billing is charged upfront for the year and saves you approximately 15% compared to monthly billing. For example, Standard at 500 contacts drops from $20/mo to around $17/mo. If you're confident in your current contact tier, annual is the most cost-effective option. You can switch from monthly to annual at any time.</div>
+    </div>
+
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q">
+        <span class="faq-q-text">What happens if I exceed my contact limit?</span>
+        <button class="faq-btn">+</button>
+      </div>
+      <div class="faq-a">If your contact count exceeds your plan tier, you'll automatically move to the next tier and be billed the difference. You won't be blocked from sending. We'll notify you before any billing change takes effect.</div>
+    </div>
+
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q">
+        <span class="faq-q-text">Do you offer nonprofit or partner discounts?</span>
+        <button class="faq-btn">+</button>
+      </div>
+      <div class="faq-a">Yes. Verified nonprofits receive a 15% discount on all paid plans. Reach out to our support team with proof of nonprofit status to apply. Additional partner and startup pricing may also be available — contact sales to discuss your situation.</div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══ FOOTER CTA ═══ -->
+<section class="footer-cta">
+  <h2>Start free.<br>Upgrade when you're ready.</h2>
+  <p>No credit card. No commitments. Cancel anytime.</p>
+  <div class="footer-btns">
+    <button class="btn btn-lg btn-yellow">Sign up free</button>
+    <button class="btn btn-lg" style="background:transparent;color:#B5AFA8;box-shadow:inset 0 0 0 1.5px #444;font-family:var(--font);font-size:16px;font-weight:600;padding:14px 32px;border-radius:var(--r-md);cursor:pointer;">Talk to sales</button>
+  </div>
+</section>
+
+
+<!-- ═══ PRICING LOGIC ═══ -->
+<script>
+const TIERS = [
+  { label:"500",      ess:13,   std:20,  pre:350  },
+  { label:"1,500",    ess:26,   std:45,  pre:350  },
+  { label:"2,500",    ess:35,   std:60,  pre:350  },
+  { label:"5,000",    ess:55,   std:90,  pre:350  },
+  { label:"10,000",   ess:95,   std:135, pre:350  },
+  { label:"15,000",   ess:130,  std:185, pre:400  },
+  { label:"20,000",   ess:160,  std:235, pre:450  },
+  { label:"25,000",   ess:190,  std:280, pre:500  },
+  { label:"50,000",   ess:null, std:400, pre:700  },
+  { label:"100,000",  ess:null, std:800, pre:1000 },
+  { label:"200,000+", ess:null, std:null,pre:1450 },
+];
+
+let billing = 'monthly';
+const DISC = 0.85;
+
+function disc(n) {
+  if (n === null) return null;
+  return billing === 'annual' ? Math.round(n * DISC) : n;
+}
+function fmt(n) {
+  return n === null ? null : disc(n).toLocaleString();
+}
+
+function flash(id) {
+  const el = document.getElementById(id);
+  el.classList.remove('price-updating');
+  void el.offsetWidth;
+  el.classList.add('price-updating');
+  setTimeout(() => el.classList.remove('price-updating'), 300);
+}
+
+function updatePricing(idx) {
+  idx = parseInt(idx);
+  const t = TIERS[idx];
+
+  // ESSENTIALS
+  if (t.ess === null) {
+    document.getElementById('ess-amt').textContent = '—';
+    document.getElementById('ess-sub').innerHTML = '<em style="color:#B5AFA8">Not available at this tier</em>';
+  } else {
+    flash('ess-amt');
+    document.getElementById('ess-amt').textContent = fmt(t.ess);
+    document.getElementById('ess-sub').innerHTML = `Up to <strong>${t.label} contacts</strong>`;
+  }
+
+  // STANDARD
+  if (t.std === null) {
+    document.getElementById('std-amt').textContent = '—';
+    document.getElementById('std-sub').innerHTML = '<em style="color:#B5AFA8">Contact sales</em>';
+  } else {
+    flash('std-amt');
+    document.getElementById('std-amt').textContent = fmt(t.std);
+    document.getElementById('std-sub').innerHTML = `Up to <strong>${t.label} contacts</strong>`;
+  }
+
+  // PREMIUM
+  flash('pre-amt');
+  document.getElementById('pre-amt').textContent = fmt(t.pre);
+  if (idx >= 4) {
+    document.getElementById('pre-sub').innerHTML = `Scales with <strong>${t.label} contacts</strong>`;
+  } else {
+    document.getElementById('pre-sub').innerHTML = `Starting at <strong>200K+ contacts</strong>`;
+  }
+
+  // Premium CTA adjusts at 200K+
+  if (idx === 10) {
+    document.getElementById('pre-cta').textContent = 'Talk to sales';
+    document.getElementById('pre-note').textContent = 'Custom pricing for 200K+ contacts';
+  } else {
+    document.getElementById('pre-cta').textContent = 'Buy now';
+    document.getElementById('pre-note').textContent = 'No free trial · Direct purchase';
+  }
+}
+
+function setBilling(mode) {
+  billing = mode;
+  document.getElementById('btn-mo').classList.toggle('active', mode === 'monthly');
+  document.getElementById('btn-yr').classList.toggle('active', mode === 'annual');
+
+  const note = document.getElementById('annual-note');
+  if (mode === 'annual') {
+    const idx = parseInt(document.getElementById('contact-select').value);
+    const t = TIERS[idx];
+    if (t.std) {
+      const mo = t.std;
+      const yr = Math.round(mo * DISC);
+      const save = (mo - yr) * 12;
+      note.textContent = `Save $${save} per year vs. monthly on Standard`;
+      note.classList.add('visible');
+    }
+  } else {
+    note.textContent = '';
+    note.classList.remove('visible');
+  }
+
+  updatePricing(document.getElementById('contact-select').value);
+}
+
+// Init
+updatePricing(0);
+</script>
+</body>
+</html>
